@@ -5,15 +5,16 @@ import Navbar from "./components/Navbar";
 import TimeLine from "./components/TimeLine";
 import Categories from "./components/Categories";
 import Bargraph from "./components/Bargraph";
+import PieChart from "./components/PieChart";
 
 function App() {
-  const data = useSelector((store) => store.businessReducer);
   return (
     <div className="w-[1200px]">
       <Navbar />
       <TimeLine />
       <Categories />
       <Bargraph />
+      <PieChart />
     </div>
   );
 }

@@ -1,39 +1,35 @@
-import { BUSINESS_FAILURE, BUSINESS_REQUEST, BUSINESS_SUCCESS } from "./actionTypes";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const businessInitialState = {
-  isLoading: false,
-  isError: false,
-  data: [],
-};
-export const businessReducer = (
-  state = businessInitialState,
-  { type, payload }
-) => {
-  switch (type) {
-    case BUSINESS_REQUEST: {
+export const businessSlice = createSlice({
+  name: "businessReducer",
+  initialState: {
+    isLoading: false,
+    isError: false,
+    data: [],
+  },
+  reducers: {
+    loadingBusiness(state,action) {
       return {
         ...state,
         isLoading: true,
       };
-    }
-    case BUSINESS_SUCCESS: {
+    },
+    successBusiness(state,action) {
       return {
         ...state,
-        isLoading: false,
-        data: payload,
+        isLoading: true,
+        data: action.payload,
       };
-    }
-
-    case BUSINESS_FAILURE: {
+    },
+    errorBusiness(state,action) {
       return {
         ...state,
         isLoading: false,
         isError: true,
       };
-    }
+    },
+  },
+});
+export const { loadingBusiness, successBusiness, errorBusiness } =
+businessSlice.actions;
 
-    default: {
-      return state;
-    }
-  }
-};

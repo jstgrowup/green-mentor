@@ -12,6 +12,7 @@ import {
   BarElement,
 } from "chart.js";
 import { Line, Doughnut, Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -55,34 +56,44 @@ export const LineChart = () => {
   );
 };
 export const DonoughtChart = () => {
-  const data = {
-    labels: ["subscribed", "unsubscribed"],
+  const { data } = useSelector((store) => store.business);
+  const supplier = Array.from(new Set(data?.map((item) => item.Supplier)));
+  const groupedData = data.reduce((acc, entry) => {
+    const supplier = entry.Supplier;
+    const emissions = entry.Emissions;
+
+    if (!acc[supplier]) {
+      acc[supplier] = {
+        Supplier: supplier,
+        TotalEmissions: 0,
+      };
+    }
+    acc[supplier].TotalEmissions += emissions;
+    return acc;
+  }, {});
+  console.log('Object.values(groupedData):', Object.values(groupedData))
+  const emissions = Object.values(groupedData).map(
+    (item) => item.TotalEmissions
+  );
+
+  console.log('emissions:', emissions)
+  const dodata = {
+    labels: supplier,
     datasets: [
       {
-        label: "Views",
-        data: [3, 20],
-        borderColor: ["rgb(62,12,171)", "rgb(214,43,129)"],
-        backgroundColor: ["rgb(62,12,171)", "rgb(214,43,129)"],
+        label: "Emissions",
+        data: emissions,
+        backgroundColor: ["#7C95EA", "#544B8D", "#FFC400", "#3BB85E"],
         borderWidth: 1,
       },
     ],
   };
-  return <Doughnut data={data} />;
+  return <Doughnut data={dodata} />;
 };
 
-export const BarChart = ({ data }) => {
-  // {
-  //     "Date": "4/1/22",
-  //     "Month": "Jan",
-  //     "Year": 2022,
-  //     "Supplier": "Reliance",
-  //     "Emissions": 1698,
-  //     "Revenue": 203456,
-  //     "R/E": 120,
-  //     "YOY R/E Change": null
-  // }
-
-  const months = Array.from(new Set(data.map((item) => item.Month)));
+export const BarChart = () => {
+  const { data } = useSelector((store) => store.business);
+  const months = Array.from(new Set(data?.map((item) => item.Month)));
   const emissionsFor2023 = data
     .filter((item) => item.Year === 2023)
     .map((item) => item.Emissions);
