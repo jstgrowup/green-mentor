@@ -1,27 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  filterBusiness,
+  successBusiness,
+} from "../redux/BusinessReducer/reducer";
 
 const TimeLine = () => {
+  const [dates, setdates] = useState({
+    min: "",
+    max: "",
+  });
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setdates((prev) => ({ ...prev, [name]: value }));
+  };
+  useEffect(() => {
+    if (dates.min && dates.max) {
+      dispatch(filterBusiness(dates));
+    }
+  }, [dates]);
+
   return (
-    <div className="flex items-center justify-end h-[32px] px-[20px] flex-shrink-0 ">
+    <div className="flex items-center justify-end h-[32px] px-[20px] flex-shrink-0 cursor-pointer">
       <div className="inline-flex h-[32px] px-[12px] py-[10px] justify-center items-center gap-[10px] flex-shrink-0 border-2 border-green-500 rounded-lg">
-        <div className="text-white font-[HelveticaNeue] text-[12px] font-normal gap-[10px] flex items-center">
-          <p className="text-black">Show Timeline: </p>
+        <div className="text-black font-[HelveticaNeue] text-[12px] font-normal gap-[10px] flex items-center ">
+          <p>Show Timeline: </p>
           <input
+            value={dates.min}
             type="month"
             className="text-[#02AB6C] border-none outline-none bg-transparent"
-            id="start-month"
-            name="start-month"
-            min="2022-01"
-            max="2023-12"
+            name="min"
+            onChange={handleChange}
           />
-          <span className="text-white">to</span>
+          <span>to</span>
           <input
+            value={dates.max}
             type="month"
             className="text-[#02AB6C] border-none outline-none bg-transparent"
-            id="end-month"
-            name="end-month"
-            min="2022-01"
-            max="2023-12"
+            name="max"
+            onChange={handleChange}
           />
           <img
             src="/images/timelineVector.svg"

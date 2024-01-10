@@ -11,7 +11,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { Line, Doughnut, Bar, Pie } from "react-chartjs-2";
+import { Line, Doughnut, Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
@@ -57,6 +57,8 @@ export const LineChart = () => {
 };
 export const DonoughtChart = () => {
   const { data } = useSelector((store) => store.business);
+  
+
   const supplier = Array.from(new Set(data?.map((item) => item.Supplier)));
   const groupedData = data.reduce((acc, entry) => {
     const supplier = entry.Supplier;
@@ -106,6 +108,7 @@ export const DonoughtChart = () => {
 
 export const BarChart = () => {
   const { data } = useSelector((store) => store.business);
+
   const months = Array.from(new Set(data?.map((item) => item.Month)));
   const emissionsFor2023 = data
     .filter((item) => item.Year === 2023)

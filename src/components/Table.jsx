@@ -5,6 +5,7 @@ import TableBody from "./TableBody";
 
 const Table = () => {
   const { dataGroupedByMonth } = useSelector((store) => store.business);
+  
 
   return (
     <div className="w-[610px] h-[471px] overflow-y-scroll border border-gray-400 rounded-lg bg-white">
