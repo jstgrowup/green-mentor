@@ -3,7 +3,7 @@ import IndividualCategory from "./IndividualCategory";
 
 const Categories = () => {
   return (
-    <div className="flex justify-between border border-black w-[946px] ml-[60px]">
+    <div className="flex justify-between w-[946px] ml-[60px]">
       <IndividualCategory
         title="Current Year Emissions"
         description={"contribution to Scope3"}

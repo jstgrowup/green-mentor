@@ -11,7 +11,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { Line, Doughnut, Bar } from "react-chartjs-2";
+import { Line, Doughnut, Bar, Pie } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
@@ -61,7 +61,6 @@ export const DonoughtChart = () => {
   const groupedData = data.reduce((acc, entry) => {
     const supplier = entry.Supplier;
     const emissions = entry.Emissions;
-
     if (!acc[supplier]) {
       acc[supplier] = {
         Supplier: supplier,
@@ -71,24 +70,38 @@ export const DonoughtChart = () => {
     acc[supplier].TotalEmissions += emissions;
     return acc;
   }, {});
-  console.log('Object.values(groupedData):', Object.values(groupedData))
+
   const emissions = Object.values(groupedData).map(
     (item) => item.TotalEmissions
   );
-
-  console.log('emissions:', emissions)
+  const totalSum = emissions.reduce((sum, value) => sum + value, 0);
+  const percentageDistribution = emissions.map(
+    (value) => `${((value / totalSum) * 100).toFixed(1)}`
+  );
   const dodata = {
     labels: supplier,
     datasets: [
       {
-        label: "Emissions",
-        data: emissions,
-        backgroundColor: ["#7C95EA", "#544B8D", "#FFC400", "#3BB85E"],
+        label: "Emissions in Percentage",
+        data: percentageDistribution,
+        backgroundColor: [
+          "#7C95EA",
+          "#544B8D",
+          "#FFC400",
+          "#3BB85E",
+          "#ff8fab",
+          "#bc4749",
+          "#06d6a0",
+          "#FFD700",
+          "#FF6F40",
+          "#556B2F",
+        ],
         borderWidth: 1,
       },
     ],
   };
-  return <Doughnut data={dodata} />;
+  const options = {};
+  return <Doughnut data={dodata} options={options} />;
 };
 
 export const BarChart = () => {
@@ -133,7 +146,7 @@ export const BarChart = () => {
   };
 
   return (
-    <div className="w-[946px] h-[447px] border border-black ml-[20px] mb-[10px]">
+    <div className="w-[946px] h-[447px]  ml-[20px] mb-[10px] ">
       <Bar data={chartData} options={options} />
     </div>
   );

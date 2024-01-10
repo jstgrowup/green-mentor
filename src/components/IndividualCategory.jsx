@@ -9,14 +9,14 @@ const IndividualCategory = ({
   borderColor,
 }) => {
   return (
-    <div className="h-[134px] w-[250px] border  rounded-12  bg-white  p-5  rounded-lg shadow-xl">
+    <div className="h-[134px] w-[250px] border  rounded-12  bg-white  p-5  rounded-lg shadow-lg">
       <div className="flex items-center">
         <p className="font-helvetica-neue text-[14px] font-normal">{title}</p>
         <div className="w-[14px] h-[14px] ">
           <img src="/images/information-line.svg" alt="" />
         </div>
       </div>
-      <p className="text-opacity-67  font-Poppins text-[8px] italic  leading-normal py-2">
+      <p className="font-Poppins text-[10px] italic  leading-normal py-2">
         {description}
       </p>
 

@@ -3,8 +3,8 @@ import { DonoughtChart } from "../Chart";
 
 const PieChart = () => {
   return (
-    <div className="w-[459px] h-[471px] border border-red-600">
-      <div className="w-full h-[64px] p-[20px] flex justify-between items-center border border-black">
+    <div className="w-[459px] h-[471px] ml-16 mb-[10px] border-gray-400 border rounded-lg bg-white ">
+      <div className="w-full h-[64px] p-[20px] flex justify-between items-center  border-black">
         <p className="text-[14px] font-semibold font-helvetica-neue">
           Emission by Supplier
         </p>
@@ -17,8 +17,8 @@ const PieChart = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full border border-black flex justify-center items-center">
-        <div className="w-[232px] h-[240.22px] border border-black">
+      <div className=" flex justify-center  items-center">
+        <div className="w-[400px] h-[400.22px]  flex justify-center items-center">
           <DonoughtChart />
         </div>
       </div>
