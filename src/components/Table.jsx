@@ -49,7 +49,7 @@ const Table = () => {
   }, [data]);
 
   return (
-    <div className="w-[610px] h-[471px] overflow-y-scroll border border-gray-400 rounded-lg bg-white">
+    <div className="w-[610px] h-[471px] overflow-y-scroll border border-gray-300 rounded-lg bg-white">
       <div className="w-full h-[48px]  flex justify-between items-center p-[20px]">
         <div className="w-[120px] h-[19px] flex items-center text-[16px] justify-between font-semibold">
           <p>Supplier wise</p>

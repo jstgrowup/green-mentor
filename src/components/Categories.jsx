@@ -15,6 +15,10 @@ const Categories = () => {
       <IndividualCategory
         title="Revenue to emission ratio"
         borderColor={"#FFC400"}
+        chemicalAmount={"136"}
+        YOY={"3.6%"}
+
+
       />
       <IndividualCategory
         title="Category-1"

@@ -31,7 +31,7 @@ const IndividualCategory = ({
           <p>{chemicalAmount}</p>
           <p>{chemical}</p>
         </div>
-        <div className="flex flex-col w-[77px] h-[28px] justify-center items-center flex-shrink-0 text-opacity-67 text-center text-HelveticaNeue text-[11px]  leading-normal border text-custom-red font-semibold">
+        <div className="flex flex-col w-[77px] h-[28px] justify-center items-center flex-shrink-0 text-opacity-67 text-center text-HelveticaNeue text-[11px]  leading-normal  text-custom-red font-semibold">
           <p>{YOY} YOY</p>
         </div>
       </div>

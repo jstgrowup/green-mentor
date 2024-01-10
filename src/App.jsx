@@ -11,7 +11,7 @@ import SideBar from "./components/SideBar";
 
 function App() {
   return (
-    <div className="flex bg-[#EBEBEB]">
+    <div className="flex bg-[#EBEBEB] font-[helvetica-neue]">
       <SideBar />
       <div className="w-[1200px] ">
         <Navbar />

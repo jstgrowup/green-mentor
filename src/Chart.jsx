@@ -57,8 +57,6 @@ export const LineChart = () => {
 };
 export const DonoughtChart = () => {
   const { data } = useSelector((store) => store.business);
-  
-
   const supplier = Array.from(new Set(data?.map((item) => item.Supplier)));
   const groupedData = data.reduce((acc, entry) => {
     const supplier = entry.Supplier;
