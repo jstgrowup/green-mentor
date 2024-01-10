@@ -1,11 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TableHeader from "./TableHeader";
 import { useSelector } from "react-redux";
 import TableBody from "./TableBody";
 
 const Table = () => {
-  const { dataGroupedByMonth } = useSelector((store) => store.business);
+  const { data } = useSelector((store) => store.business);
   
+  const [loading, setloading] = useState(false);
+  const [dataTable, setdataTable] = useState([]);
+  useEffect(() => {
+    setloading(true);
+    const groupedData = data.reduce((result, entry) => {
+      const monthKey = `${entry.Month}-${entry.Year}`;
+      if (!result[monthKey]) {
+        result[monthKey] = {
+          Month: entry.Month,
+          Emissions: 0,
+          Revenue: 0,
+          YOYREChange: 0,
+        };
+      }
+
+      result[monthKey].Emissions += entry.Emissions;
+      result[monthKey].Revenue += entry.Revenue;
+
+      if (entry["YOYREChange"]) {
+        const yoyREChange = parseFloat(entry["YOYREChange"].replace("%", ""));
+        result[monthKey]["YOYREChange"] += yoyREChange;
+      }
+
+      return result;
+    }, {});
+    let tempgroupedData = [];
+    for (const key in groupedData) {
+      groupedData[key]["ExactDate"] = key;
+      tempgroupedData.push(groupedData[key]);
+    }
+
+    const groupedArray = tempgroupedData.map((entry) => ({
+      ...entry,
+      RevenueToEmissionsRatio: Number(
+        (entry.Revenue / entry.Emissions).toFixed(1)
+      ),
+    }));
+   
+    setloading(false);
+    setdataTable(groupedArray);
+  }, [data]);
 
   return (
     <div className="w-[610px] h-[471px] overflow-y-scroll border border-gray-400 rounded-lg bg-white">
@@ -29,23 +70,27 @@ const Table = () => {
         <TableHeader content={"RE"} />
         <TableHeader content={"YOYREChange"} />
       </div>
-      {dataGroupedByMonth.map(
-        ({
-          Emissions,
-          ExactDate,
-          Month,
-          RevenueToEmissionsRatio,
-          YOYREChange,
-        }) => {
-          return (
-            <div className="flex font-semibold">
-              <TableBody content={ExactDate} />
-              <TableBody content={Emissions} />
-              <TableBody content={RevenueToEmissionsRatio} />
-              <TableBody content={YOYREChange} />
-            </div>
-          );
-        }
+      {loading ? (
+        <h1>Loading</h1>
+      ) : (
+        dataTable.map(
+          ({
+            Emissions,
+            ExactDate,
+            Month,
+            RevenueToEmissionsRatio,
+            YOYREChange,
+          }) => {
+            return (
+              <div className="flex font-semibold">
+                <TableBody content={ExactDate} />
+                <TableBody content={Emissions} />
+                <TableBody content={RevenueToEmissionsRatio} />
+                <TableBody content={YOYREChange} />
+              </div>
+            );
+          }
+        )
       )}
     </div>
   );
