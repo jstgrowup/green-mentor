@@ -24,7 +24,7 @@ const TimeLine = () => {
   return (
     <div className="flex items-center justify-end h-[32px] px-[20px] flex-shrink-0 cursor-pointer">
       <div className="inline-flex h-[32px] px-[12px] py-[10px] justify-center items-center gap-[10px] flex-shrink-0 border-2 border-green-500 rounded-lg">
-        <div className="text-black font-[HelveticaNeue] text-[12px] font-normal gap-[10px] flex items-center ">
+        <div className="text-black  text-[12px] font-normal gap-[10px] flex items-center ">
           <p>Show Timeline: </p>
           <input
             value={dates.min}

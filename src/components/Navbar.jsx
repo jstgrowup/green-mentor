@@ -9,7 +9,7 @@ const Navbar = () => {
             <img src="/images/navbarleft.svg" alt="My SVG" />
           </div>
         </div>
-        <p className="text-black font-[HelveticaNeue] text-[16px] font-normal">
+        <p className="text-black  text-[16px] font-normal">
           Category-1
         </p>
       </div>

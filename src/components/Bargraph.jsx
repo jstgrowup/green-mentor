@@ -11,7 +11,7 @@ const Bargraph = () => {
   }, []);
 
   return (
-    <div className="h-[521px] w-[1100px] border border-gray-300 pl-10 flex flex-col font-helvetica-neue ml-14 rounded-xl bg-white">
+    <div className="h-[521px] w-[1100px] border border-gray-300 pl-10 flex flex-col  ml-14 rounded-xl bg-white">
       <div className="flex w-[564px]  h-[64px]  justify-between items-center flex-shrink-0">
         <p className="text-[14px] font-semibold">Emission/Revenue</p>
       </div>

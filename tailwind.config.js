@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "helvetica-neue": ["HelveticaNeue", "Helvetica", "Arial", "sans-serif"],
+        "helvetica-neue": ["sans-serif"],
       },
       boxShadow: {
         'box': "0px 0.599px 5.32px 0px rgba(0, 0, 0, 0.01), 0px 2.01px 17.869px 0px rgba(0, 0, 0, 0.01), 0px 9px 80px 0px rgba(0, 0, 0, 0.02)",
