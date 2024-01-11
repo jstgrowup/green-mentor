@@ -10,6 +10,7 @@ import {
   ArcElement,
   Legend,
   BarElement,
+
 } from "chart.js";
 import { Line, Doughnut, Bar, Chart } from "react-chartjs-2";
 import { useSelector } from "react-redux";
@@ -22,7 +23,7 @@ ChartJS.register(
   Tooltip,
   ArcElement,
   Legend,
-  BarElement
+  BarElement,
 );
 export const LineChart = () => {
   const labels = ["Subham dey", "asda", "dasda", "aewqer"];
@@ -160,7 +161,7 @@ export const BarChart = () => {
 
   return (
     <div className="w-[946px] h-[447px]  ml-[20px] mb-[10px] ">
-      <Bar data={chartData} options={options} />
+        <Bar data={chartData} options={options} />
     </div>
   );
 };
