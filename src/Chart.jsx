@@ -11,7 +11,7 @@ import {
   Legend,
   BarElement,
 
-} from "chart.js";
+} from "chart.js/auto";
 import { Line, Doughnut, Bar, Chart } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 ChartJS.register(
