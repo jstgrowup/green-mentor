@@ -15,7 +15,7 @@ function App() {
       <SideBar />
       <div className="w-[1200px] ">
         <Navbar />
-        <div className="flex flex-col gap-7 ">
+        <div className="flex flex-col gap-7">
           <TimeLine />
           <Categories />
           <Bargraph />

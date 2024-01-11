@@ -11,7 +11,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import { Line, Doughnut, Bar } from "react-chartjs-2";
+import { Line, Doughnut, Bar, Chart } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 ChartJS.register(
   CategoryScale,
@@ -131,6 +131,18 @@ export const BarChart = () => {
 
         backgroundColor: "#84a98c",
         borderWidth: 1,
+      },
+      {
+        label: "R/E 2022",
+        borderColor: "rgb(255, 205, 86)",
+        data: emissionsFor2022,
+        type: "line",
+      },
+      {
+        label: "R/E 2023",
+        borderColor: "rgb(54, 162, 235)",
+        data: emissionsFor2023,
+        type: "line",
       },
     ],
   };

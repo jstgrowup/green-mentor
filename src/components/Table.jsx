@@ -5,7 +5,7 @@ import TableBody from "./TableBody";
 
 const Table = () => {
   const { data } = useSelector((store) => store.business);
-  
+
   const [loading, setloading] = useState(false);
   const [dataTable, setdataTable] = useState([]);
   useEffect(() => {
@@ -43,7 +43,7 @@ const Table = () => {
         (entry.Revenue / entry.Emissions).toFixed(1)
       ),
     }));
-   
+
     setloading(false);
     setdataTable(groupedArray);
   }, [data]);
@@ -82,7 +82,7 @@ const Table = () => {
             YOYREChange,
           }) => {
             return (
-              <div className="flex font-semibold">
+              <div className="flex font-semibold" key={ExactDate}>
                 <TableBody content={ExactDate} />
                 <TableBody content={Emissions} />
                 <TableBody content={RevenueToEmissionsRatio} />
